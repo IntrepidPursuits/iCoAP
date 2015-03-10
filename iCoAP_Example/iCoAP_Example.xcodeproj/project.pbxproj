@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		509FB37B1AAE6BB400CFA39D /* ICoAPTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 509FB37A1AAE6BB400CFA39D /* ICoAPTools.m */; };
 		932ADE0117A2FABD00EB05AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932ADE0017A2FABD00EB05AB /* UIKit.framework */; };
 		932ADE0317A2FABD00EB05AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932ADE0217A2FABD00EB05AB /* Foundation.framework */; };
 		932ADE0517A2FABD00EB05AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932ADE0417A2FABD00EB05AB /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		509FB3791AAE6BB400CFA39D /* ICoAPTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICoAPTools.h; path = "../../iCoAP-Library_Files/ICoAPTools.h"; sourceTree = "<group>"; };
+		509FB37A1AAE6BB400CFA39D /* ICoAPTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICoAPTools.m; path = "../../iCoAP-Library_Files/ICoAPTools.m"; sourceTree = "<group>"; };
 		932ADDFD17A2FABD00EB05AB /* iCoAP_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCoAP_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932ADE0017A2FABD00EB05AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		932ADE0217A2FABD00EB05AB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,6 +134,8 @@
 				932ADE2C17A3142100EB05AB /* NSString+hex.m */,
 				932ADE3017A3167900EB05AB /* GCDAsyncUdpSocket.h */,
 				932ADE3117A3167900EB05AB /* GCDAsyncUdpSocket.m */,
+				509FB3791AAE6BB400CFA39D /* ICoAPTools.h */,
+				509FB37A1AAE6BB400CFA39D /* ICoAPTools.m */,
 			);
 			name = "iCoAP-Library_Files";
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				932ADE1117A2FABD00EB05AB /* AppDelegate.m in Sources */,
 				932ADE2517A3136100EB05AB /* ExampleViewController.m in Sources */,
 				932ADE2D17A3142100EB05AB /* ICoAPMessage.m in Sources */,
+				509FB37B1AAE6BB400CFA39D /* ICoAPTools.m in Sources */,
 				932ADE2E17A3142100EB05AB /* ICoAPExchange.m in Sources */,
 				932ADE2F17A3142100EB05AB /* NSString+hex.m in Sources */,
 				932ADE3217A3167900EB05AB /* GCDAsyncUdpSocket.m in Sources */,
