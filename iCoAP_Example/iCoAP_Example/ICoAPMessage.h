@@ -12,10 +12,11 @@
 
 
 #import <Foundation/Foundation.h>
+#import "NSString+hex.h"
 
-
-
-
+#define k8bitIntForOption                   13
+#define k16bitIntForOption                  14
+#define kOptionDeltaPayloadIndicator        15
 
 /*
  * Type with +4 value for version 
@@ -80,6 +81,16 @@ typedef enum {
     IC_PROXY_SCHEME = 39,
     IC_SIZE1 = 60
 } ICoAPOption;
+
+typedef enum {
+    IC_PLAIN = 0,
+    IC_LINK_FORMAT = 40,
+    IC_XML = 41,
+    IC_OCTET_STREAM = 42,
+    IC_EXI = 47,
+    IC_JSON = 50,
+    IC_CBOR = 60
+} ICoAPMessageKnownContentFormats;
 
 
 @interface ICoAPMessage : NSObject
@@ -193,7 +204,11 @@ typedef enum {
  */
 @property (strong, nonatomic) NSDate *timestamp;
 
-
+/*
+ * 'data':
+ * The encoded data string of the message
+ */
+@property (readonly) NSData *data;
 
 
 
@@ -222,6 +237,12 @@ typedef enum {
 - (id)initAsRequestConfirmable:(BOOL)con requestMethod:(uint)req sendToken:(BOOL)token payload:(NSString *)payload;
 
 /*
+ *  'initWithData:':
+ *  Initialization with NSData.
+ */
+- (id)initWithData:(NSData *)data;
+
+/*
  *  'addOption:withValue'
  *  Adds an option number and its value to the option dictionary.
  *
@@ -231,6 +252,8 @@ typedef enum {
  *  coresponding to the "key" option number
  */
 - (void)addOption:(uint)option withValue:(NSString *)value;
+
+- (BOOL)requiresPayloadStringDecode;
 
 @end
 

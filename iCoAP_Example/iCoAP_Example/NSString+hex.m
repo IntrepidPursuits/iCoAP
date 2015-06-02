@@ -49,4 +49,20 @@
     }
     return valueString;    
 }
+
+- (NSMutableData *)stringToHexData {
+    NSMutableData *commandData= [[NSMutableData alloc] init];
+    unsigned char byteRepresentation;
+    char byte_chars[3] = {'\0','\0','\0'};
+    
+    for (int i = 0; i < (self.length / 2); i++) {
+        byte_chars[0] = [self characterAtIndex:i * 2];
+        byte_chars[1] = [self characterAtIndex:i * 2 + 1];
+        byteRepresentation = strtol(byte_chars, NULL, 16);
+        [commandData appendBytes:&byteRepresentation length:1];
+    }
+    
+    return commandData;
+}
+
 @end

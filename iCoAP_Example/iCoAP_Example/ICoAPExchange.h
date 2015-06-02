@@ -32,13 +32,6 @@
 #import "GCDAsyncUdpSocket.h"
 #import "ICoAPMessage.h"
 
-
-
-
-#define k8bitIntForOption                   13
-#define k16bitIntForOption                  14
-#define kOptionDeltaPayloadIndicator        15
-
 #define kMAX_RETRANSMIT                     4
 #define kACK_TIMEOUT                        2.0
 #define kACK_RANDOM_FACTOR                  1.5
@@ -51,24 +44,11 @@
 
 #define kiCoAPErrorDomain                   @"iCoAPErrorDomain"
 
-
 typedef enum {
     IC_RESPONSE_TIMEOUT,            //  MAX_WAIT time expired and no response is expected
     IC_UDP_SOCKET_ERROR,            //  UDP Socket setup/bind failed
     IC_PROXYING_ERROR               //  Error during Proxying
 } ICoAPExchangeErrorCode;
-
-
-typedef enum {
-    IC_PLAIN = 0,
-    IC_LINK_FORMAT = 40,
-    IC_XML = 41,
-    IC_OCTET_STREAM = 42,
-    IC_EXI = 47,
-    IC_JSON = 50,
-    IC_CBOR = 60
-} ICoAPKnownContentFormats;
-
 
 @interface ICoAPExchange : NSObject<GCDAsyncUdpSocketDelegate, NSURLConnectionDataDelegate, NSURLConnectionDelegate> {
     uint randomMessageId;
@@ -179,21 +159,7 @@ typedef enum {
  */
 - (void)closeExchange;
 
-/*
- *  'decodeCoAPMessageFromData':
- *  Decodes the given 'data' to an ICoAPMessage object.
- */
-- (ICoAPMessage *)decodeCoAPMessageFromData:(NSData *)data;
-
-/*
- *  'encodeDataFromCoAPMessage':
- *  Encodes the given ICoAPMessage to a ready-to-send NSData.
- */
-- (NSData *)encodeDataFromCoAPMessage:(ICoAPMessage *)cO;
-
 @end
-
-
 
 
 

@@ -35,8 +35,7 @@
  *  with the same hex-value.
  */
 + (NSString *)stringFromDataWithHex:(NSData *) data;
-
-
-
 + (NSString *)get0To4ByteHexStringFromInt:(int32_t)value;
+- (NSMutableData *)stringToHexData;
+
 @end
