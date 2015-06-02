@@ -6,15 +6,10 @@
 
 
 #import "ExampleViewController.h"
-#import "ICoAPTools.h"
+#import "ICoAPMessage+DisplayHelper.h"
 
-
-
-//Here you can define the host and port that shall be used in this example.
-NSString* HOST = @"4.coap.me";
-int PORT = 5683;
-
-
+static NSString * kICoAPConnectionHost = @"1.coap.me";
+static uint kICoAPConnectionPort = 5683;
 
 @implementation ExampleViewController
 
@@ -49,14 +44,14 @@ int PORT = 5683;
     }
     
     count++;
-    NSString *codeString = [ICoAPTools getCodeDisplayStringForCoAPObject:coapMessage];
-    NSString *typeString = [ICoAPTools getTypeDisplayStringForCoAPObject:coapMessage];
+    NSString *codeString = [coapMessage codeDisplayString];
+    NSString *typeString = [coapMessage typeDisplayString];
     NSString *dateString = [completeDateFormat stringFromDate:coapMessage.timestamp];
 
     NSMutableString *optString = [[NSMutableString alloc] init];
     for (id key in coapMessage.optionDict) {
         [optString appendString:@"Option: "];
-        [optString appendString:[ICoAPTools getOptionDisplayStringForCoAPOptionDelta:[key intValue]]];
+        [optString appendString:[ICoAPMessage optionDisplayStringFromOptionDelta:[key intValue]]];
         
         //Iterate over the array of option values
         NSMutableArray *valueArray = [coapMessage.optionDict valueForKey:key];
@@ -71,7 +66,6 @@ int PORT = 5683;
     NSLog(@"---------------------------");
     NSLog(@"---------------------------");
     
-
     if (exchange == iExchange) {
         [self.textView setText:[NSString stringWithFormat:@"(%i) Message from: %@\n\nType: %@\nResponseCode: %@\n%@\nMessageID: %i\nToken: %i\nPayload: '%@'\n\n%@", count, dateString, typeString, codeString, optString , coapMessage.messageID, coapMessage.token, coapMessage.payload, self.textView.text]];
         
@@ -89,7 +83,6 @@ int PORT = 5683;
 
 }
 - (void)iCoAPExchange:(ICoAPExchange *)exchange didFailWithError:(NSError *)error {
-    //Handle Errors
     if (error.code == IC_UDP_SOCKET_ERROR || error.code == IC_RESPONSE_TIMEOUT) {
         [self.textView setText:[NSString stringWithFormat:@"Failed: %@\n\n%@", [error localizedDescription], self.textView.text]];
         self.activityIndicator.hidden = YES;
@@ -128,10 +121,10 @@ int PORT = 5683;
     // and set all properties manually.
     // coap.me is a test coap server you can use for testing. Note that it might be offline from time to time.
     if (!iExchange) {
-        iExchange = [[ICoAPExchange alloc] initAndSendRequestWithCoAPMessage:cO toHost:HOST port:PORT delegate:self];
+        iExchange = [[ICoAPExchange alloc] initAndSendRequestWithCoAPMessage:cO toHost:kICoAPConnectionHost port:kICoAPConnectionPort delegate:self];
     }
     else {
-        [iExchange sendRequestWithCoAPMessage:cO toHost:HOST port:PORT];
+        [iExchange sendRequestWithCoAPMessage:cO toHost:kICoAPConnectionHost port:kICoAPConnectionPort];
     }
 
     self.activityIndicator.hidden = NO;
