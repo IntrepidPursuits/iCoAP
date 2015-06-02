@@ -42,28 +42,7 @@
     if (self = [super init]) {
         randomMessageId = 1 + arc4random() % 65536;
         randomToken = 1 + arc4random() % INT_MAX;
-        
-        supportedOptions =  [NSArray arrayWithObjects:
-                            [NSNumber numberWithInt: IC_IF_MATCH],
-                            [NSNumber numberWithInt: IC_URI_HOST],
-                            [NSNumber numberWithInt: IC_ETAG],
-                            [NSNumber numberWithInt: IC_IF_NONE_MATCH],
-                            [NSNumber numberWithInt: IC_OBSERVE],
-                            [NSNumber numberWithInt: IC_URI_PORT],
-                            [NSNumber numberWithInt: IC_LOCATION_PATH],
-                            [NSNumber numberWithInt: IC_URI_PATH],
-                            [NSNumber numberWithInt: IC_CONTENT_FORMAT],
-                            [NSNumber numberWithInt: IC_MAX_AGE],
-                            [NSNumber numberWithInt: IC_URI_QUERY],
-                            [NSNumber numberWithInt: IC_ACCEPT],
-                            [NSNumber numberWithInt: IC_LOCATION_QUERY],
-                            [NSNumber numberWithInt: IC_BLOCK2],
-                            [NSNumber numberWithInt: IC_BLOCK1],
-                            [NSNumber numberWithInt: IC_SIZE2],
-                            [NSNumber numberWithInt: IC_PROXY_URI],
-                            [NSNumber numberWithInt: IC_PROXY_SCHEME],
-                            [NSNumber numberWithInt: IC_SIZE1],
-                            nil];
+        supportedOptions = @[                  @(IC_IF_MATCH),                  @(IC_URI_HOST),                  @(IC_ETAG),                  @(IC_IF_NONE_MATCH),                  @(IC_OBSERVE),                  @(IC_URI_PORT),                  @(IC_LOCATION_PATH),                  @(IC_URI_PATH),                  @(IC_CONTENT_FORMAT),                  @(IC_MAX_AGE),                  @(IC_URI_QUERY),                  @(IC_ACCEPT),                  @(IC_LOCATION_QUERY),                  @(IC_BLOCK2),                  @(IC_BLOCK1),                  @(IC_SIZE2),                  @(IC_PROXY_URI),                  @(IC_PROXY_SCHEME),                  @(IC_SIZE1),                  ];
     }
     return self;
 }
@@ -602,59 +581,35 @@
 
 - (NSString *)getHttpHeaderFieldForCoAPOptionDelta:(uint)delta {
     switch (delta) {
-        case IC_IF_MATCH:
-            return @"IF_MATCH";
-        case IC_URI_HOST:
-            return @"URI_HOST";
-        case IC_ETAG:
-            return @"ETAG";
-        case IC_IF_NONE_MATCH:
-            return @"IF_NONE_MATCH";
-        case IC_URI_PORT:
-            return @"URI_PORT";
-        case IC_LOCATION_PATH:
-            return @"LOCATION_PATH";
-        case IC_URI_PATH:
-            return @"URI_PATH";
-        case IC_CONTENT_FORMAT:
-            return @"CONTENT_FORMAT";
-        case IC_MAX_AGE:
-            return @"MAX_AGE";
-        case IC_URI_QUERY:
-            return @"URI_QUERY";
-        case IC_ACCEPT:
-            return @"ACCEPT";
-        case IC_LOCATION_QUERY:
-            return @"LOCATION_QUERY";
-        case IC_PROXY_URI:
-            return  @"PROXY_URI";
-        case IC_PROXY_SCHEME:
-            return @"PROXY_SCHEME";
-        case IC_BLOCK2:
-            return @"BLOCK2";
-        case IC_BLOCK1:
-            return @"BLOCK1";
-        case IC_OBSERVE:
-            return @"OBSERVE";
-        case IC_SIZE1:
-            return @"SIZE1";
-        case IC_SIZE2:
-            return @"SIZE2";
-        default:
-            return nil;
+        case IC_IF_MATCH:       return @"IF_MATCH";
+        case IC_URI_HOST:       return @"URI_HOST";
+        case IC_ETAG:           return @"ETAG";
+        case IC_IF_NONE_MATCH:  return @"IF_NONE_MATCH";
+        case IC_URI_PORT:       return @"URI_PORT";
+        case IC_LOCATION_PATH:  return @"LOCATION_PATH";
+        case IC_URI_PATH:       return @"URI_PATH";
+        case IC_CONTENT_FORMAT: return @"CONTENT_FORMAT";
+        case IC_MAX_AGE:        return @"MAX_AGE";
+        case IC_URI_QUERY:      return @"URI_QUERY";
+        case IC_ACCEPT:         return @"ACCEPT";
+        case IC_LOCATION_QUERY: return @"LOCATION_QUERY";
+        case IC_PROXY_URI:      return @"PROXY_URI";
+        case IC_PROXY_SCHEME:   return @"PROXY_SCHEME";
+        case IC_BLOCK2:         return @"BLOCK2";
+        case IC_BLOCK1:         return @"BLOCK1";
+        case IC_OBSERVE:        return @"OBSERVE";
+        case IC_SIZE1:          return @"SIZE1";
+        case IC_SIZE2:          return @"SIZE2";
+        default:                return nil;
     }
 }
 
 - (NSString *)getHttpMethodForCoAPMessageCode:(uint)code {
     switch (code) {
-        case IC_POST:
-            return @"POST";
-        case IC_PUT:
-            return @"PUT";
-        case IC_DELETE:
-            return @"DELETE";
-        default:
-            return @"GET";
+        case IC_POST:   return @"POST";
+        case IC_PUT:    return @"PUT";
+        case IC_DELETE: return @"DELETE";
+        default:        return @"GET";
     }
 }
 
